@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <div class="content">
+      <h2 style="color: white">Calculator</h2>
+
+      <p id="display">Result</p>
+      <div id="container">
+        <div id="digits">
+          <button id="1" onclick="setnum(1)">1</button>
+          <button id="2" onclick="setnum(2)">2</button>
+          <button id="3" onclick="setnum(3)">3</button>
+          <button id="4" onclick="setnum(4)">4</button>
+          <button id="5" onclick="setnum(5)">5</button>
+          <button id="6" onclick="setnum(6)">6</button>
+          <button id="7" onclick="setnum(7)">7</button>
+          <button id="8" onclick="setnum(8)">8</button>
+          <button id="9" onclick="setnum(9)">9</button>
+        </div>
+        <div id="operators">
+          <button id="clear"><i class="fas fa-backspace"></i></button>
+          <button id="add" onclick="operator('add')">
+            <i class="fas fa-plus"></i>
+          </button>
+          <button id="multiply" onclick="operator('mul')">
+            <i class="fas fa-times"></i>
+          </button>
+          <button id="sub" onclick="operator('sub')">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button id="divide" onclick="operator('div')">
+            <i class="fas fa-divide"></i>
+          </button>
+          <button id="equal"><i class="fas fa-equals"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let firstNumber;
+      let lastNumber;
+      let op;
+      let result;
+
+      function setnum(num) {
+        if (op === undefined) {
+          firstNumber = num;
+          document.getElementById("display").innerText = firstNumber;
+          return firstNumber;
+        } else {
+          lastNumber = num;
+          document.getElementById("display").innerText =
+            firstNumber + " " + op + " " + lastNumber;
+          return lastNumber;
+        }
+      }
+
+      console.log("hadaa resultat" + firstNumber);
+
+      function operator(string) {
+        switch (string) {
+          case "add":
+            op = "+";
+            break;
+          case "sub":
+            op = "-";
+            break;
+          case "mul":
+            op = "X";
+            break;
+          case "div":
+            op = "/";
+            break;
+
+          default:
+            break;
+        }
+
+        document.getElementById("display").innerText = firstNumber + " " + op;
+      }
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      function subtract(a, b) {
+        return a - b;
+      }
+
+      function multiply(a, b) {
+        return a * b;
+      }
+
+      function divide(a, b) {
+        return a / b;
+      }
+
+      function operation(op, firstNumber, lastNumber) {
+        if (op == "+") {
+          result = add(firstNumber, lastNumber);
+          console.log(result);
+          document.getElementById("display").innerText = result;
+        } else if (op == "-") {
+          result = subtract(firstNumber, lastNumber);
+          console.log(result);
+          document.getElementById("display").innerText = result;
+        } else if (op == "X") {
+          result = multiply(firstNumber, lastNumber);
+          console.log(result);
+          document.getElementById("display").innerText = result;
+        } else if (op == "/") {
+          result = divide(firstNumber, lastNumber);
+          console.log(result);
+          document.getElementById("display").innerText = result;
+        }
+      }
+
+      document.getElementById("equal").addEventListener("click", function () {
+        return operation(op, firstNumber, lastNumber);
+      });
+
+      document.getElementById("clear").addEventListener("click", function () {
+        document.getElementById("display").innerText = "Result";
+        firstNumber = undefined;
+        lastNumber = undefined;
+        op = undefined;
+      });
+    </script>
+  </body>
+</html>
